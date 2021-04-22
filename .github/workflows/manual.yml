@@ -45,8 +45,6 @@ jobs:
               prerelease: true,
               name: github.event.inputs.name,
               body: "teste"
-              
           });
-          */
           exec('git describe --tags --abbrev=0')
           const release = await github.repos.listTags({owner, repo});
