@@ -47,4 +47,4 @@ jobs:
               body: "teste"
           });
           exec('git describe --tags --abbrev=0')
-          const release = await github.repos.listTags({owner, repo});
+          await github.repos.listTags({owner, repo});
