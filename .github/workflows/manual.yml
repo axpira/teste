@@ -28,8 +28,9 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: |
-        apt install httpie
+        sudo apt install httpie
         echo "Hello ${{ github.event.inputs.name }}"
+        http :3000
     - name: View context attributes
       uses: actions/github-script@v4
       with:
