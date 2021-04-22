@@ -39,12 +39,11 @@ jobs:
         script: |
           const { exec } = require('child_process');
           const { repo: { owner, repo }, sha } = context;
-          /*
           const release = await github.repos.createRelease({
               owner, repo,
               tag_name: process.env.GITHUB_REF,
               prerelease: true,
-              name: "teste_" + process.env.GITHUB_REF,
+              name: github.event.inputs.name,
               body: "teste"
               
           });
