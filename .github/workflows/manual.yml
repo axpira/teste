@@ -41,5 +41,10 @@ jobs:
           const release = await github.repos.createRelease({
               owner, repo,
               tag_name: process.env.GITHUB_REF,
-              prerelease: true
-          });        
+              prerelease: true,
+              name: "teste_" + process.env.GITHUB_REF,
+              body: "teste"
+              
+          });
+          const release = await github.repos.listTags({
+          });
