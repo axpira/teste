@@ -32,3 +32,14 @@ jobs:
       uses: actions/github-script@v4
       with:
         script: console.log(context)
+    - name: PRERELEASE
+      uses: actions/github-script@v4
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          const { repo: { owner, repo }, sha } = context;
+          const release = await github.repos.createRelease({
+              owner, repo,
+              tag_name: process.env.GITHUB_REF,
+              prerelease: true
+          });        
