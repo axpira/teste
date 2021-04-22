@@ -37,6 +37,7 @@ jobs:
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
+          const { exec } = require('child_process');
           const { repo: { owner, repo }, sha } = context;
           /*
           const release = await github.repos.createRelease({
