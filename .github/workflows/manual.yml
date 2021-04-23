@@ -32,7 +32,7 @@ jobs:
       run: |
         # echo "Hello ${{ github.event.inputs.name }}"
         # echo "$GITHUB_API_URL"
-        tag_name="teste-$(date +"%Y-%m-%d:%T")"
+        tag_name="teste-$(date +"%Y%m%d-%H.%M.%S")"
         git config user.name github-actions
         git config user.email github-actions@github.com
         # git add .
