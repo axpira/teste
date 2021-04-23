@@ -41,6 +41,11 @@ jobs:
           --silent)
         echo "$result"
         echo $result | jq '.id'
+        upload_url=$(echo $result | jq '.upload_url')
+        curl \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --url "$upload_url" \
+          -T main.go
 #    - name: View context attributes
 #      uses: actions/github-script@v4
 #      with:
