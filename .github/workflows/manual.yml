@@ -32,7 +32,7 @@ jobs:
       run: |
         echo "Hello ${{ github.event.inputs.name }}"
         echo "$GITHUB_API_URL"
-        tag_name="teste-$(date)"
+        tag_name="teste-$(date +"%Y-%m-%d:%T")"
         git tag $tag_name
         result=$(curl --request POST \
           --url https://api.github.com/repos/${{ github.repository }}/releases \
