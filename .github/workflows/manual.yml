@@ -59,7 +59,7 @@ jobs:
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           --header 'content-type: text/plain' \
           --url "$upload_url?name=teste.txt&label=myteste" \
-          --upload-file @tmp.txt \
+          --upload-file tmp.txt \
           --silent
 #    - name: View context attributes
 #      uses: actions/github-script@v4
