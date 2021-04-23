@@ -30,24 +30,24 @@ jobs:
       run: |
         sudo apt install httpie
         echo "Hello ${{ github.event.inputs.name }}"
-        http :3000
-    - name: View context attributes
-      uses: actions/github-script@v4
-      with:
-        script: console.log(context)
-    - name: PRERELEASE
-      uses: actions/github-script@v4
-      with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
-        script: |
-          const { exec } = require('child_process');
-          const { repo: { owner, repo }, sha } = context;
-          const release = await github.repos.createRelease({
-              owner, repo,
-              tag_name: process.env.GITHUB_REF,
-              prerelease: true,
-              name: github.event.inputs.name,
-              body: "teste"
-          });
-          exec('git describe --tags --abbrev=0')
-          await github.repos.listTags({owner, repo});
+        echo "$GITHUB_API_URL"
+#    - name: View context attributes
+#      uses: actions/github-script@v4
+#      with:
+#        script: console.log(context)
+#    - name: PRERELEASE
+#      uses: actions/github-script@v4
+#      with:
+#        github-token: ${{secrets.GITHUB_TOKEN}}
+#        script: |
+#          const { exec } = require('child_process');
+#          const { repo: { owner, repo }, sha } = context;
+#          const release = await github.repos.createRelease({
+#              owner, repo,
+#              tag_name: process.env.GITHUB_REF,
+#              prerelease: true,
+#              name: github.event.inputs.name,
+#              body: "teste"
+#          });
+#          exec('git describe --tags --abbrev=0')
+#          await github.repos.listTags({owner, repo});
