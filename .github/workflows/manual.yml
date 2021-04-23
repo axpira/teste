@@ -50,8 +50,10 @@ jobs:
           }" \
           --silent)
         # echo "$result"
-        echo $result | jq '.id'
+        release_id=$(echo $result | jq '.id')
         upload_url=$(echo $result | jq '.upload_url')
+        echo $upload_url
+        upload_url="https://uploads.github.com/repos/${{ github.repository }}/releases/${release_id}/assets"
         echo $upload_url
         curl \
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
