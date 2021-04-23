@@ -38,7 +38,6 @@ jobs:
             "tag_name": "teste"
             "name": "$(date)"
           }' \
-          --fail \
           --silent)
         echo "$result"
         echo $result | jq '.id'
