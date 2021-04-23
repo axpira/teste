@@ -30,7 +30,9 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: |
-        alias curl="curl --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}'"
+        alias curl="curl \
+            --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+            --fail --silent"
         # echo "Hello ${{ github.event.inputs.name }}"
         # echo "$GITHUB_API_URL"
         tag_name="teste-$(date +"%Y%m%d-%H.%M.%S")"
