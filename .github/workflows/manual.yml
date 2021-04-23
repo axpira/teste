@@ -30,7 +30,7 @@ jobs:
       run: |
         echo "Hello ${{ github.event.inputs.name }}"
         echo "$GITHUB_API_URL"
-        releaseId=$(curl --request POST \
+        result=$(curl --request POST \
           --url https://api.github.com/repos/${{ github.repository }}/releases \
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           --header 'content-type: application/json' \
@@ -38,8 +38,9 @@ jobs:
             "tag_name": "teste",
           }' \
           --fail \
-          --silent | jq '.id')
-        echo "$releaseId"
+          --silent)
+        echo "$result"
+        echo $result | jq '.id'
 #    - name: View context attributes
 #      uses: actions/github-script@v4
 #      with:
