@@ -30,7 +30,7 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: |
-        alias curl="curl \
+        alias curlgh="curl \
             --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
             --fail --silent"
         # echo "Hello ${{ github.event.inputs.name }}"
@@ -43,7 +43,7 @@ jobs:
         git commit -m "generated"
         git tag $tag_name
         git push --tags
-        result=$(curl --request POST \
+        result=$(curlgh --request POST \
           --url https://api.github.com/repos/${{ github.repository }}/releases \
           --header 'content-type: application/json' \
           --data "{
@@ -56,11 +56,11 @@ jobs:
         echo $upload_url
         upload_url="https://uploads.github.com/repos/${{ github.repository }}/releases/${release_id}/assets"
         echo $upload_url
-        curl \
+        curlgh \
           --header 'content-type: text/plain' \
           --url "$upload_url?name=teste.txt&label=myteste" \
           --upload-file tmp.txt
-        curl \
+        curlgh \
           --header 'content-type: text/plain' \
           --url "$upload_url?name=teste.txt&label=myteste" \
           --upload-file tmp.txt
