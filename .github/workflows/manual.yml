@@ -52,11 +52,11 @@ jobs:
         echo $result | jq '.id'
         upload_url=$(echo $result | jq '.upload_url')
         echo $upload_url
-        date >> tmp.txt
         curl \
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           --url "$upload_url" \
-          --upload-file tmp.txt
+          --upload-file main.go \
+          --silent
 #    - name: View context attributes
 #      uses: actions/github-script@v4
 #      with:
