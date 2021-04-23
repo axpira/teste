@@ -30,6 +30,7 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: |
+        shopt -s expand_aliases
         alias curlgh="curl \
             --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
             --fail --silent"
