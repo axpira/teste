@@ -39,7 +39,17 @@ jobs:
             "title": "Automated issue for commit: ${{ github.sha }}",
             "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."
           }' \
-          --fail
+          --fail \
+          --silent
+        curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/releases \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "tag_name": "teste",
+          }' \
+          --fail \
+          --silent
 #    - name: View context attributes
 #      uses: actions/github-script@v4
 #      with:
