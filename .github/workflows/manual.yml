@@ -30,10 +30,15 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: |
-        echo "Hello ${{ github.event.inputs.name }}"
-        echo "$GITHUB_API_URL"
+        # echo "Hello ${{ github.event.inputs.name }}"
+        # echo "$GITHUB_API_URL"
         tag_name="teste-$(date +"%Y-%m-%d:%T")"
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        # git add .
         git tag $tag_name
+        # git commit -m "generated"
+        git push --tags
         result=$(curl --request POST \
           --url https://api.github.com/repos/${{ github.repository }}/releases \
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
