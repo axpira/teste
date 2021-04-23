@@ -36,6 +36,7 @@ jobs:
           --header 'content-type: application/json' \
           --data '{
             "tag_name": "teste"
+            "name": "$(date)"
           }' \
           --fail \
           --silent)
