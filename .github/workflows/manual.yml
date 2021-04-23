@@ -62,6 +62,7 @@ jobs:
           --url "$upload_url?name=teste.txt&label=myteste" \
           --upload-file tmp.txt
         curlgh \
+          --header 'content-type: text/plain' \
           --url "$upload_url?name=main.go&label=mymain" \
           --upload-file main.go
 #    - name: View context attributes
