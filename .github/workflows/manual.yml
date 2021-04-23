@@ -49,14 +49,14 @@ jobs:
             \"name\": \"$tag_name\"
           }" \
           --silent)
-        echo "$result"
+        # echo "$result"
         echo $result | jq '.id'
         upload_url=$(echo $result | jq '.upload_url')
         echo $upload_url
         curl \
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           --url "$upload_url?name=teste&label=teste" \
-          --upload-file tmp.txt \
+          --data-binary @tmp.txt \
           --silent
 #    - name: View context attributes
 #      uses: actions/github-script@v4
