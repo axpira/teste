@@ -21,7 +21,9 @@ jobs:
   heroku-cmd:
     runs-on: ubuntu-latest
     steps:
-      - run: sudo snap install --classic heroku
+      - run: |
+          export HOME="$PWD"
+          sudo snap install --classic heroku
   deploy-heroku:
     runs-on: ubuntu-latest
     needs: heroku-cmd
