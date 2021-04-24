@@ -23,6 +23,7 @@ jobs:
     steps:
       - run: sudo snap install --classic heroku
   deploy-heroku:
+    runs-on: ubuntu-latest
     needs: heroku-cmd
     steps:
       - run: |
