@@ -18,6 +18,16 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  heroku-cmd:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo snap install --classic heroku
+  deploy-heroku:
+    needs: heroku-cmd
+    steps:
+      - run: |
+          heroku --version
+
   # This workflow contains a single job called "greet"
   greet:
     # The type of runner that the job will run on
