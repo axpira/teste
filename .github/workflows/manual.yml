@@ -18,64 +18,71 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  heroku-cmd:
+  teste:
     runs-on: ubuntu-latest
     steps:
-      - run: curl https://cli-assets.heroku.com/install.sh | sh
-  deploy-heroku:
-    runs-on: ubuntu-latest
-    needs: heroku-cmd
-    steps:
-      - run: |
-          heroku --version
+      docker ps
+  # heroku-cmd:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - run: curl https://cli-assets.heroku.com/install.sh | sh
+  # deploy-heroku:
+  #   runs-on: ubuntu-latest
+  #   needs: heroku-cmd
+  #   steps:
+  #     - run: |
+  #         heroku --version
 
-  # This workflow contains a single job called "greet"
-  greet:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+#  # This workflow contains a single job called "greet"
+#  greet:
+#    # The type of runner that the job will run on
+#    runs-on: ubuntu-latest
+#
+#    # Steps represent a sequence of tasks that will be executed as part of the job
+#    steps:
+#    - name: Checkout
+#      uses: actions/checkout@v2
+#    # Runs a single command using the runners shell
+#    - name: Send greeting
+#      run: |
+#        shopt -s expand_aliases
+#        alias curlgh="curl \
+#            --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+#            --fail --silent"
+#        # echo "Hello ${{ github.event.inputs.name }}"
+#        # echo "$GITHUB_API_URL"
+#        tag_name="teste-$(date +"%Y%m%d-%H.%M.%S")"
+#        git config user.name github-actions
+#        git config user.email github-actions@github.com
+#        echo "$tag_name" >> tmp.txt
+#        git add .
+#        git commit -m "generated"
+#        git tag $tag_name
+#        git push --tags
+#        result=$(curlgh --request POST \
+#          --url https://api.github.com/repos/${{ github.repository }}/releases \
+#          --header 'content-type: application/json' \
+#          --data "{
+#            \"tag_name\": \"$tag_name\",
+#            \"name\": \"$tag_name\"
+#        }")
+#        # echo "$result"
+#        release_id=$(echo $result | jq '.id')
+#        upload_url=$(echo $result | jq '.upload_url')
+#        echo $upload_url
+#        upload_url="https://uploads.github.com/repos/${{ github.repository }}/releases/${release_id}/assets"
+#        echo $upload_url
+#        curlgh \
+#          --header 'content-type: text/plain' \
+#          --url "$upload_url?name=teste.txt&label=myteste" \
+#          --upload-file tmp.txt
+#        curlgh \
+#          --header 'content-type: text/plain' \
+#          --url "$upload_url?name=main.go&label=mymain" \
+#          --upload-file main.go
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    # Runs a single command using the runners shell
-    - name: Send greeting
-      run: |
-        shopt -s expand_aliases
-        alias curlgh="curl \
-            --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-            --fail --silent"
-        # echo "Hello ${{ github.event.inputs.name }}"
-        # echo "$GITHUB_API_URL"
-        tag_name="teste-$(date +"%Y%m%d-%H.%M.%S")"
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-        echo "$tag_name" >> tmp.txt
-        git add .
-        git commit -m "generated"
-        git tag $tag_name
-        git push --tags
-        result=$(curlgh --request POST \
-          --url https://api.github.com/repos/${{ github.repository }}/releases \
-          --header 'content-type: application/json' \
-          --data "{
-            \"tag_name\": \"$tag_name\",
-            \"name\": \"$tag_name\"
-        }")
-        # echo "$result"
-        release_id=$(echo $result | jq '.id')
-        upload_url=$(echo $result | jq '.upload_url')
-        echo $upload_url
-        upload_url="https://uploads.github.com/repos/${{ github.repository }}/releases/${release_id}/assets"
-        echo $upload_url
-        curlgh \
-          --header 'content-type: text/plain' \
-          --url "$upload_url?name=teste.txt&label=myteste" \
-          --upload-file tmp.txt
-        curlgh \
-          --header 'content-type: text/plain' \
-          --url "$upload_url?name=main.go&label=mymain" \
-          --upload-file main.go
+
+
 #    - name: View context attributes
 #      uses: actions/github-script@v4
 #      with:
