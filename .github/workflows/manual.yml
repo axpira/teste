@@ -27,12 +27,13 @@ jobs:
     needs: heroku-cmd
     steps:
       - run: |
-          docker login --username=_ --password=${{ secrets.HEROKU_API_KEY }} registry.heroku.com
-          heroku container:login
+          #docker login --username=_ --password=${{ secrets.HEROKU_API_KEY }} registry.heroku.com
+          #heroku container:login
+          echo "${{ secrets.HEROKU_API_KEY }}" | docker login -u "_" --password-stdin registry.heroku.com
           docker pull nginx:latest
           docker tag nginx:latest registry.heroku.com/little-bird-finance-backend/web
           docker push registry.heroku.com/little-bird-finance-backend/web
-          heroku container:release web
+          docker push release
 
   # heroku-cmd:
   #   runs-on: ubuntu-latest
