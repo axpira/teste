@@ -27,7 +27,7 @@ jobs:
     needs: heroku-cmd
     steps:
       - run: |
-          #docker login --username=_ --password=${{ secrets.HEROKU_API_KEY }} registry.heroku.com
+          docker login --username=_ --password=${{ secrets.HEROKU_API_KEY }} registry.heroku.com
           heroku container:login
           docker pull nginx:latest
           docker tag nginx:latest registry.heroku.com/little-bird-finance-backend/web
