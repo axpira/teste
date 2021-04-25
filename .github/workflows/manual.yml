@@ -33,7 +33,20 @@ jobs:
           docker pull nginx:latest
           docker tag nginx:latest registry.heroku.com/little-bird-finance-backend/web
           docker push registry.heroku.com/little-bird-finance-backend/web
-          heroku container:release web --app little-bird-finance-backend
+          #heroku container:release web --app little-bird-finance-backend
+          imageId=$(docker inspect registry.heroku.com/little-bird-finance-backend/web --format={{.Id}})
+          curl -X PATCH https://api.heroku.com/apps/little-bird-finance-backend/formation \
+            -d '{
+            "updates": [
+              {
+                "type": "web",
+                "docker_image": "'"$imageId"'"
+              }
+            ]
+          }' \
+            -H "Content-Type: application/json" \
+            -H "Accept: application/vnd.heroku+json; version=3.docker-releases" \
+            -H "Authorization: Bearer ${{ secrets.HEROKU_API_KEY }}"
 
   # heroku-cmd:
   #   runs-on: ubuntu-latest
