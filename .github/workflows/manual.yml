@@ -26,6 +26,7 @@ jobs:
           docker pull nginx:latest
           docker tag nginx:latest registry.heroku.com/little-bird-finance-backend/web
           docker push registry.heroku.com/little-bird-finance-backend/web
+          docker push container:release web release
 
   # heroku-cmd:
   #   runs-on: ubuntu-latest
