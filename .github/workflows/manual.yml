@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+          docker login --username=_ --password=${{ secrets.HEROKU_API_KEY }} registry.heroku.com
           docker pull nginx:latest
           docker tag nginx:latest registry.heroku.com/little-bird-finance-backend/web
           docker push registry.heroku.com/little-bird-finance-backend/web
