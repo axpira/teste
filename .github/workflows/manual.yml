@@ -21,7 +21,7 @@ jobs:
   teste:
     runs-on: ubuntu-latest
     steps:
-      docker ps
+      - run: docker ps
   # heroku-cmd:
   #   runs-on: ubuntu-latest
   #   steps:
